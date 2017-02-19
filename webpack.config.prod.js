@@ -17,6 +17,9 @@ module.exports = {
         publicPath: "/",
         pathinfo: true
     },
+    resolve : {
+        modules: [path.resolve(__dirname, "src/theme/styles"), "node_modules"]
+    },
     devtool: 'source-map',
     module: {
         loaders: [{
