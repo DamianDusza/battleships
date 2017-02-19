@@ -1,0 +1,11 @@
+RewriteEngine On
+
+#sRewriteCond %{HTTP_HOST} ^(www\.)(.+) [OR]
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} ^(www\.)?(.+)
+#RewriteRule ^ http://%2%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php|theme)
+RewriteRule .* index.html [L]

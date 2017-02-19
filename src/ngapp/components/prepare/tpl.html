@@ -1,0 +1,39 @@
+
+<header class="title">
+    <h1>{{$ctrl.userName}}, place your ships</h1>
+</header>
+
+<div class="content clearfix">
+    <div class="boards-container animated fadeIn" ng-mousemove="$ctrl.dragShip($event)">
+        <div class="ready-modal animated bounceIn" ng-if="$ctrl.ready">
+            <div class="content">
+                <h2>Your ships are ready</h2>
+                <a class="btn btn-primary btn-lg" ui-sref="game">Start game</a>
+            </div>
+        </div>
+        <div class="board user-board">
+            <div class="grid-row clearfix" ng-repeat="(rowKey, row) in $ctrl.grid track by $index">
+                <div 
+                    class="grid-cell animated" 
+                    ng-repeat="(cellKey, cell) in $ctrl.grid[rowKey] track by $index"
+                    ng-mouseover="$ctrl.validateShipPlacement(rowKey, cellKey)"
+                    ng-click="$ctrl.placeShipEnd(rowKey, cellKey)"
+                    ng-class="{ 'active' : cell.active, 'taken bounceIn' : cell.taken }"
+                    ng-style="{'width' : $ctrl.config.grid.size + 'px', 'height' : $ctrl.config.grid.size + 'px'}"
+                >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="legend-container animated fadeIn">
+        <div ng-click="$ctrl.placeShipStart($index)" class="ship" ng-repeat="ship in $ctrl.ships track by $index" ng-class="{ 'active' : $ctrl.activeShip.index == $index, 'empty' : ship.amount == 0 }">
+            <div class="left">
+                <a>Place</a>
+            </div>
+            <div class="right">
+                <h2>{{ship.name}}</h2>
+                <p>Size: {{ship.size}} | Left: {{ship.amount}}</p>
+            </div>
+        </div>
+    </div>
+</div>

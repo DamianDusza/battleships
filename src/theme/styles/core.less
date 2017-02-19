@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:300,700,900&subset=latin-ext');
+
+@import './buttons';
+@import './form';
+@import './clearfix';
+
+* {
+    font-family: 'Exo', sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    background-position: center;
+    background-image: url('../images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+}
+
+a,button {
+    cursor: pointer;
+}
+
+[ui-view]>* {
+    position: absolute;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+}
+.container{
+    max-width: 90%;
+    display: block;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+}

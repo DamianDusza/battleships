@@ -1,0 +1,136 @@
+game {
+    text-align: center;
+    header.title {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        display: inline-block;
+        margin: 1em auto 0em auto;
+        padding: 1em 3em;
+        border-radius: .3em;
+
+        &.user{
+            border-bottom: 3px solid orange;
+        }
+        &.ai{
+            border-bottom: 3px solid red;
+        }
+        h1 {
+            padding: 0;
+            margin: 0;
+
+            spinner{
+                margin-left: .5em;
+            }
+        }
+    }
+    .boards-container {
+        width: 100%;
+        display: inline-block;
+        float: left;
+        text-align: center;
+        position: relative;
+        
+        .end-modal {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0%;
+            left: 0%;
+            background: rgba(0, 0, 0, 0.9);
+            text-align: center;
+            z-index: 999;
+            border-radius: .3em;
+
+            .content {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                h2 {
+                    margin: 0;
+                    padding: 0;
+                    margin-bottom: .5em;
+                    color: #fff;
+                    font-size: 3em;
+                }
+            }
+        }
+        .board {
+            display: inline-block;
+            margin: 1em 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 2em;
+            border-radius: .3em;
+
+            &.ai-board {
+                .username {
+                    text-align: left;
+                }
+                .grid-row {
+                    .grid-cell {
+
+                        &:hover {
+                            background-image: url('./target.png');
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            cursor: pointer;
+                        }
+                        &.ui-turn{
+
+                            &:hover {
+                                background-image: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+            &.user-board {
+                .username {
+                    text-align: right;
+                    color: orange;
+                }
+            }
+            .username {
+                color: white;
+                display: block;
+                font-size: 1.3em;
+                margin-bottom: .3em;
+                color: red;
+                font-weight: 600;;
+            }
+            .grid-row {
+                display: block;
+
+                .grid-cell {
+                    display: inline-block;
+                    float: left;
+                    border: 1px solid #666;
+                    border-radius: .3em;
+                    transition: .3s all ease-in-out;
+
+                    &.taken {
+                        background: #fff;
+                        background-image: url('./ship.png');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.shoot {
+                        background-image: url('./target-failed.png');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    &.shoot.taken {
+                        background-image: url('./target-success.png');
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                }
+            }
+        }
+    }
+}

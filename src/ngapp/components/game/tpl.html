@@ -1,0 +1,42 @@
+<header class="title user animated flipInX" ng-show="$ctrl.isUserTurn">
+    <h1>{{$ctrl.userName}}, your turn</h1>
+</header>
+<header class="title ai animated flipInX" ng-show="!$ctrl.isUserTurn">
+    <h1>AI turn <spinner></spinner></h1>
+</header>
+
+
+<div class="boards-container">
+    <div class="end-modal" ng-if="$ctrl.endState">
+        <div class="content">
+            <h2 ng-if="$ctrl.endState == 'won'">You won!</h2>
+            <h2 ng-if="$ctrl.endState == 'loose'">You loose!</h2>
+            <a class="btn btn-primary btn-lg" ui-sref="prepare">Try again</a>
+        </div>
+    </div>
+    <div class="board ai-board">
+        <span class="username">AI Oponnent</span>
+        <div class="grid-row clearfix" ng-repeat="(rowKey, row) in $ctrl.aiGrid track by $index">
+            <div 
+                class="grid-cell animated" 
+                ng-repeat="(cellKey, cell) in $ctrl.aiGrid[rowKey] track by $index"
+                ng-click="$ctrl.shoot(rowKey, cellKey)"
+                ng-class="{ 'shoot flash' : cell.shoot, 'taken' : cell.shoot && cell.taken, 'ui-turn' : !$ctrl.isUserTurn }"
+                ng-style="{'width' : $ctrl.config.grid.size + 'px', 'height' : $ctrl.config.grid.size + 'px'}"
+            >
+            </div>
+        </div>
+    </div>
+    <div class="board user-board">
+        <span class="username">{{$ctrl.userName}}</span>
+        <div class="grid-row clearfix" ng-repeat="(rowKey, row) in $ctrl.userGrid track by $index">
+            <div 
+                class="grid-cell animated"  
+                ng-repeat="(cellKey, cell) in $ctrl.userGrid[rowKey] track by $index"
+                ng-class="{ 'shoot flash' : cell.shoot, 'taken' : cell.taken }"
+                ng-style="{'width' : $ctrl.config.grid.size + 'px', 'height' : $ctrl.config.grid.size + 'px'}"
+            >
+            </div>
+        </div>
+    </div>
+</div>
